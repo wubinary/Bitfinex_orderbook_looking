@@ -137,10 +137,13 @@ class BitfinexOrderTools(BitfinexOrder):
 
 
 bitfinexOrderTools = BitfinexOrderTools()
+bitfinexOrderTools.drawOrdersNowDistribution2D('ethusd', 50, 50)
+bitfinexOrderTools.drawOrdersNowDistribution3D('zecusd', 150, 150)
 bitfinexOrderTools.drawOrdersNowDistribution2Dcontinuously('ethusd', 50, 50)
+bitfinexOrderTools.drawOrdersNowDistribution3Dcontinuously('btcusd', 100, 100)
         
-a = {'a':3,'aa':3}
-print a.keys()
-print a.items()[1][1]
-a.clear()
-print a
+#a = {'a':3,'aa':3}
+#print a.keys()
+#print a.items()[1][1]
+#a.clear()
+#print a
