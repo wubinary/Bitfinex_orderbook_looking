@@ -79,7 +79,20 @@ class BitfinexOrderTools(BitfinexOrder):
 		plt.show()
 		#print par,dis
 	def drawOrdersNowDistribution3Dcontinuously(self, symbol='ethusd', limitBids=1000, limitAsks=1000):
-		print 'a'
+		fig = plt.figure(1)
+		ax = plt.axes(projection='3d')
+		while True:
+			par,dis = self.ordersNowDistribution(symbol, limitBids, limitAsks)
+			disReshape = {'bids':self.listReshape(dis['bids']), 'asks':self.listReshape(dis['asks'])}
+			ax.cla()
+			ax.plot3D(disReshape['bids'][0], disReshape['bids'][1], disReshape['bids'][2], color='green')
+			ax.plot3D(disReshape['asks'][0], disReshape['asks'][1], disReshape['asks'][2], color='blue')
+			ax.set_title('"{}"{}'.format(symbol,' ordersNowDistribution visialize (green:bids,blue:asks)'))
+			ax.set_xlabel('price')
+			ax.set_ylabel('orders')
+			ax.set_zlabel('amount')
+			ax.grid(True)
+			plt.pause(5)
 	def drawOrdersNowDistribution2D(self, symbol='ethusd', limitBids=1000, limitAsks=1000):		
 		par,dis = self.ordersNowDistribution(symbol, limitBids, limitAsks)
 		disReshape = {'bids':self.listReshape(dis['bids']), 'asks':self.listReshape(dis['asks'])}
@@ -98,7 +111,7 @@ class BitfinexOrderTools(BitfinexOrder):
 		ax1.grid(True)
 		plt.show()
 		#plt.show()
-	def drawOrdersNowDistribution2Dcontiuously(self, symbol='ethusd', limitBids=1000, limitAsks=1000):
+	def drawOrdersNowDistribution2Dcontinuously(self, symbol='ethusd', limitBids=1000, limitAsks=1000):
 		fig,(ax0,ax1) = plt.subplots(2,1)
 		fig.subplots_adjust(hspace=0.5)
 		while True:
@@ -124,7 +137,7 @@ class BitfinexOrderTools(BitfinexOrder):
 
 
 bitfinexOrderTools = BitfinexOrderTools()
-bitfinexOrderTools.drawOrdersNowDistribution2Dcontiuously('ethusd', 50, 50)
+bitfinexOrderTools.drawOrdersNowDistribution2Dcontinuously('ethusd', 50, 50)
         
 a = {'a':3,'aa':3}
 print a.keys()
